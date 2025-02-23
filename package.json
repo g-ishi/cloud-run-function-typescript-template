@@ -13,16 +13,23 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "start": "functions-framework --target=helloGET",
-    "test": "c8 mocha -p -j 2 test/*.test.js --timeout=6000 --exit"
+    "build": "tsc",
+    "start": "npm run build && functions-framework --target=helloGET --source=dist/",
+    "dev": "concurrently \"tsc -w\" \"nodemon --watch ./dist/ --exec npm run start\"",
+    "deploy": "npm run build && gcloud functions deploy helloGET --runtime nodejs20 --trigger-http --entry-point=helloGET"
   },
   "dependencies": {
     "@google-cloud/functions-framework": "^3.1.0"
   },
   "devDependencies": {
+    "@types/node": "^22.13.5",
     "c8": "^10.0.0",
+    "concurrently": "^9.1.2",
     "gaxios": "^6.0.0",
     "mocha": "^10.0.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
     "wait-port": "^1.0.4"
   }
 }
