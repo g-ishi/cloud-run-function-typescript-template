@@ -4,6 +4,7 @@
   "private": true,
   "license": "Apache-2.0",
   "author": "Google Inc.",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
@@ -12,6 +13,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
+    "start": "functions-framework --target=helloGET",
     "test": "c8 mocha -p -j 2 test/*.test.js --timeout=6000 --exit"
   },
   "dependencies": {
